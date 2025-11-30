@@ -12,9 +12,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/bank_cards
+    url: jdbc:postgresql://localhost:5432/bank_cards?currentSchema=public
     username: postgres
-    password: postgres
+    password: orion
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -24,7 +24,7 @@ spring:
       hibernate:
         format_sql: true
   liquibase:
-    change-log: classpath:db/migration/changelog-master.xml
+    change-log: classpath:db/migration/changelog-master.yml
 
 # Настройки безопасности и JWT
 security:
