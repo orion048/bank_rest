@@ -13,7 +13,8 @@ public class Card {
     private Long id;
 
     @Column(nullable = false)
-    private String cardNumber; // хранить зашифрованным
+    @Convert(converter = CardNumberEncryptor.class)
+    private String cardNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", nullable = false)
@@ -28,5 +29,59 @@ public class Card {
 
     @Column(nullable = false)
     private BigDecimal balance;
+
+    // Маскированный вывод
+    public String getMaskedCardNumber() {
+        if (cardNumber == null || cardNumber.length() < 4) return "****";
+        return "**** **** **** " + cardNumber.substring(cardNumber.length() - 4);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public LocalDate getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public CardStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(CardStatus status) {
+        this.status = status;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
 }
 
