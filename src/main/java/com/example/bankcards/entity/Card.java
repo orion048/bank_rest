@@ -1,5 +1,6 @@
 package com.example.bankcards.entity;
 
+import com.example.bankcards.util.CardNumberEncryptor;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;

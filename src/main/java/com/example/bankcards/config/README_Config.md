@@ -1,3 +1,0 @@
-OpenApiConfig # Конфигурация
-
-Содержит классы конфигурации Spring Boot: JWT, безопасность, Swagger, CORS и т.п.
