@@ -3,6 +3,7 @@ package com.example.bankcards.service;
 
 import com.example.bankcards.entity.Card;
 import com.example.bankcards.entity.CardStatus;
+import com.example.bankcards.entity.Role;
 import com.example.bankcards.entity.User;
 import com.example.bankcards.repository.CardRepository;
 import com.example.bankcards.repository.UserRepository;
@@ -85,7 +86,7 @@ public class CardService {
         User currentUser = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if ("ADMIN".equals(currentUser.getRole())) {
+        if (Role.ADMIN.equals(currentUser.getRole())) {
             return cardRepository.findAll();
         } else {
             return cardRepository.findByOwner(currentUser);
